@@ -262,7 +262,7 @@ impl Default for BackendSettings {
             zed_remote_sync_to_zed_settings: false,
             codex_app_upstream_worktree_create: true,
             codex_app_native_menu_placement: true,
-            codex_app_service_tier_controls: false,
+            codex_app_service_tier_controls: true,
             codex_app_image_overlay_enabled: false,
             codex_app_image_overlay_path: String::new(),
             codex_app_image_overlay_opacity: default_image_overlay_opacity(),

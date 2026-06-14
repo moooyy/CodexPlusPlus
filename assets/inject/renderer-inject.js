@@ -931,7 +931,7 @@
   }
 
   function defaultCodexPlusSettings() {
-    return { pluginEntryUnlock: true, pluginMarketplaceUnlock: true, forcePluginInstall: true, modelWhitelistUnlock: true, sessionDelete: true, markdownExport: true, projectMove: true, conversationTimeline: true, conversationView: false, conversationViewMaxWidth: conversationViewDefaultWidth, threadScrollRestore: true, zedRemoteOpen: true, upstreamWorktreeCreate: true, nativeMenuPlacement: true, serviceTierControls: false };
+    return { pluginEntryUnlock: true, pluginMarketplaceUnlock: true, forcePluginInstall: true, modelWhitelistUnlock: true, sessionDelete: true, markdownExport: true, projectMove: true, conversationTimeline: true, conversationView: false, conversationViewMaxWidth: conversationViewDefaultWidth, threadScrollRestore: true, zedRemoteOpen: true, upstreamWorktreeCreate: true, nativeMenuPlacement: true, serviceTierControls: true };
   }
 
   const codexPlusBackendSettingMap = {
@@ -1736,10 +1736,7 @@
   function applyCodexServiceTierRequestOverride(method, params, threadIdHint = "") {
     const override = codexServiceTierOverrideForRequest(method, params, threadIdHint);
     if (!override) return params;
-    const nextParams = { ...(params || {}), serviceTier: override.serviceTier };
-    if (Object.prototype.hasOwnProperty.call(nextParams, "service_tier") || override.fastBlocked) {
-      nextParams.service_tier = override.serviceTier;
-    }
+    const nextParams = { ...(params || {}), serviceTier: override.serviceTier, service_tier: override.serviceTier };
     sendCodexPlusDiagnostic("service_tier_request_override_applied", {
       method,
       threadId: override.threadId || "",
